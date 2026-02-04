@@ -1,8 +1,10 @@
 import { useState } from "react";
 import OrderStepper from "./OrderStepper";
 import CustomerDetailsForm from "./CustomerDetailsForm";
+import { useCart } from "../../contexts/CartContext";
 
 export default function OrderFlowModal({ onClose }) {
+    const { cart, totalPrice } = useCart();
     const [step, setStep] = useState(0);
 
     const [customerData, setCustomerData] = useState({
@@ -51,20 +53,41 @@ export default function OrderFlowModal({ onClose }) {
                 <div className="w-2/3 flex flex-col justify-between">
                     <div>
                         {step === 0 && (
-                            <>
-                                <h3 className="text-lg font-semibold mb-4">
-                                    Customer Details
-                                </h3>
-                                <CustomerDetailsForm
-                                    data={customerData}
-                                    onChange={updateCustomerField}
-                                />
-                            </>
+                            <div className="flex gap-6">
+                                <div className="flex-1">
+                                    <h3 className="text-lg font-semibold mb-4">
+                                        Customer Details
+                                    </h3>
+                                    <CustomerDetailsForm
+                                        data={customerData}
+                                        onChange={updateCustomerField}
+                                    />
+                                </div>
+                                <div className="w-1/3 bg-gray-50 p-4 rounded-lg">
+                                    <h4 className="font-semibold mb-3 border-b pb-2">Order Summary</h4>
+                                    <div className="space-y-2 max-h-48 overflow-y-auto mb-4">
+                                        {cart.map(item => (
+                                            <div key={item.product_id} className="text-sm flex justify-between">
+                                                <span>{item.model_name} x{item.quantity}</span>
+                                                <span>${((item.price?.min || 0) * item.quantity).toFixed(2)}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="border-t pt-2 font-bold flex justify-between text-blue-600">
+                                        <span>Total</span>
+                                        <span>${totalPrice.toFixed(2)}</span>
+                                    </div>
+                                </div>
+                            </div>
                         )}
 
                         {step === 1 && (
                             <>
                                 <h3 className="text-lg font-semibold mb-4">Payment</h3>
+                                <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 mb-6">
+                                    <p className="text-blue-800 text-sm mb-1">Total Amount to Pay</p>
+                                    <p className="text-3xl font-bold text-blue-600">${totalPrice.toFixed(2)}</p>
+                                </div>
                                 <p className="text-gray-600">
                                     💳 Secure payment gateway will be integrated here
                                 </p>
