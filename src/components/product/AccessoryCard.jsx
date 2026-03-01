@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/CartContext";
+import { BASE_URL } from "../../services/api";
 
 export default function AccessoryCard({ accessory }) {
   const navigate = useNavigate();
@@ -11,12 +12,15 @@ export default function AccessoryCard({ accessory }) {
   }
 
   return (
-    <div className="bg-white border rounded-xl p-4 hover:shadow-lg transition-shadow flex flex-col justify-between">
+    <div
+      onClick={() => navigate(`/products/${accessory.product_id}`)}
+      className="bg-white border rounded-xl p-4 hover:shadow-lg transition-shadow flex flex-col justify-between cursor-pointer"
+    >
       <div>
         {/* Image */}
         <div className="h-32 bg-gray-50 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
           {accessory.image_urls?.[0] ? (
-            <img src={accessory.image_urls[0]} alt={accessory.model_name} className="h-full w-full object-cover" />
+            <img src={`${BASE_URL}${accessory.image_urls[0]}`} alt={accessory.model_name} className="h-full w-full object-cover" />
           ) : (
             <span className="text-gray-400 text-xs">No Image</span>
           )}
@@ -46,7 +50,7 @@ export default function AccessoryCard({ accessory }) {
       </div>
 
       {/* CTAs */}
-      <div className="flex gap-2 mt-4">
+      <div className="flex gap-2 mt-4" onClick={(e) => e.stopPropagation()}>
         <button
           onClick={handleAdd}
           className="flex-1 text-xs py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold"

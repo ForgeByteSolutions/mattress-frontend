@@ -4,7 +4,7 @@ import { explainProduct } from "../../services/explain.service";
 import { useCart } from "../../contexts/CartContext";
 import ExplainModal from "./ExplainModal";
 
-export default function ProductActions({ product }) {
+export default function ProductActions({ product, compact = false }) {
   const { addToCart } = useCart();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -44,29 +44,35 @@ export default function ProductActions({ product }) {
     alert(`${product.model_name} added to cart!`);
   }
 
+  // Styles based on compact mode
+  const btnBase = "transition rounded-lg font-medium";
+  const btnBuy = `bg-blue-600 text-white hover:bg-blue-700 ${compact ? 'px-3 py-1.5 text-xs' : 'px-6 py-3'}`;
+  const btnCart = `border border-blue-600 text-blue-600 hover:bg-blue-50 ${compact ? 'px-3 py-1.5 text-xs' : 'px-6 py-3'}`;
+  const btnExplain = `bg-blue-100 text-blue-700 hover:bg-blue-200 ${compact ? 'px-3 py-1.5 text-xs' : 'px-6 py-3'}`;
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="">
       {/* 👇 RELATIVE CONTAINER IS CRITICAL */}
-      <div className="flex gap-4 relative">
+      <div className={`flex flex-wrap items-center ${compact ? 'gap-2' : 'gap-4'} relative`}>
         <button
           onClick={handleBuyNow}
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          className={`${btnBase} ${btnBuy}`}
         >
           Buy Now
         </button>
 
         <button
           onClick={handleAddToCart}
-          className="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition"
+          className={`${btnBase} ${btnCart}`}
         >
-          Add to Cart 🛒
+          Add to Cart
         </button>
 
         <button
           onClick={handleExplain}
-          className="px-6 py-3 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition"
+          className={`${btnBase} ${btnExplain}`}
         >
-          Explain with AI 🤖
+          Explain with AI
         </button>
 
         {/* 👇 Explain modal opens BESIDE the button */}

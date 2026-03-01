@@ -1,6 +1,7 @@
 import { useCart } from "../../contexts/CartContext";
 import { useState } from "react";
 import OrderFlowModal from "../order/OrderFlowModal";
+import { BASE_URL } from "../../services/api";
 
 export default function CartModal({ onClose }) {
     const { cart, removeFromCart, updateQuantity, totalPrice, clearCart } = useCart();
@@ -39,7 +40,7 @@ export default function CartModal({ onClose }) {
                                     className="flex items-center gap-4 p-4 border border-gray-100 rounded-lg"
                                 >
                                     <img
-                                        src={item.image_urls?.[0] || "https://images.unsplash.com/photo-1505691938895-1758d7eaa511?auto=format&fit=crop&q=80&w=200"}
+                                        src={item.image_urls?.[0] ? `${BASE_URL}${item.image_urls[0]}` : "https://images.unsplash.com/photo-1505691938895-1758d7eaa511?auto=format&fit=crop&q=80&w=200"}
                                         alt={item.model_name}
                                         className="w-20 h-20 object-cover rounded-md"
                                     />

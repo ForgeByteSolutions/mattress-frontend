@@ -18,6 +18,7 @@ export default function Navbar({ onStart }) {
             Products
           </Link>
           <Link to="/dashboard" className="text-gray-600 hover:text-gray-900 transition">Dashboard</Link>
+          <Link to="/ai-governance" className="text-gray-600 hover:text-gray-900 transition">AI Governance</Link>
 
           {/* Cart Icon */}
           <Link

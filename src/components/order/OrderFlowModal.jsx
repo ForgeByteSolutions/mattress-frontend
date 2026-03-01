@@ -8,10 +8,10 @@ export default function OrderFlowModal({ onClose }) {
     const [step, setStep] = useState(0);
 
     const [customerData, setCustomerData] = useState({
-        name: "Aiman Zulkifli",
-        phone: "+60 12-345 6789",
-        email: "aiman.zulkifli@gmail.com",
-        address: "No. 24, Jalan Bukit Bintang, 55100 Kuala Lumpur, Malaysia",
+        name: "Jon Snow",
+        phone: "+1 415-555-0199",
+        email: "northremembers@gmail.com",
+        address: "Lord Commander’s Quarters, The Wall, Castle Black, The North, Westeros",
     });
 
 

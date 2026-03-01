@@ -7,7 +7,7 @@ export async function explainRecommendation(payload) {
 
 
 export async function explainProduct(product) {
-    const response = await fetch("https://mattress-backend-1-l8ps.onrender.com/api/browse/explain", {
+    const response = await fetch("http://192.168.0.157:8000/api/browse/explain", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

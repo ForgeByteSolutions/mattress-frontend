@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../services/api";
 
 export default function ProductCard({ product }) {
     const navigate = useNavigate();
@@ -10,7 +11,7 @@ export default function ProductCard({ product }) {
             <div className="h-48 bg-gray-100 flex items-center justify-center">
                 {product.image_urls?.length > 0 ? (
                     <img
-                        src={product.image_urls[0]}
+                        src={`${BASE_URL}${product.image_urls[0]}`}
                         alt={product.model_name}
                         className="h-full w-full object-cover"
                     />

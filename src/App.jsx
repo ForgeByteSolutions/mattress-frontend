@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import TrackOrder from "./pages/TrackOrder";
+import AIGovernance from "./pages/AIGovernance";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                             <Route path="/cart" element={<Cart />} />
                             <Route path="/checkout" element={<Checkout />} />
                             <Route path="/track/:orderId?" element={<TrackOrder />} />
+                            <Route path="/ai-governance" element={<AIGovernance />} />
                         </Routes>
                     </Layout>
                 </ChatProvider>

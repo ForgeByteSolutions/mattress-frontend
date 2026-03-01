@@ -7,6 +7,7 @@ export default function RecommendationCard({ item }) {
 
   return (
     <div
+      onClick={() => navigate(`/products/${product.product_id}`)}
       className="cursor-pointer rounded-xl p-5 bg-blue-50 hover:bg-blue-100 transition flex flex-col gap-3"
     >
       <div className="flex items-start justify-between gap-4">
@@ -25,8 +26,10 @@ export default function RecommendationCard({ item }) {
         </div>
       </div>
 
-      {/* 👇 Explain button lives here safely */}
-      <ProductActions product={product} />
+      {/* 👇 Button container with stopPropagation to prevent card click */}
+      <div onClick={(e) => e.stopPropagation()}>
+        <ProductActions product={product} compact={true} />
+      </div>
     </div>
   );
 }

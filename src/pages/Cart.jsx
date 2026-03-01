@@ -1,6 +1,7 @@
 import { useCart } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
 import CartAccessories from "../components/product/CartAccessories";
+import { BASE_URL } from "../services/api";
 
 export default function Cart() {
     const { cart, removeFromCart, updateQuantity, totalPrice, clearCart } = useCart();
@@ -33,7 +34,7 @@ export default function Cart() {
                                 >
                                     <div className="w-full sm:w-40 h-40 bg-gray-50">
                                         <img
-                                            src={item.image_urls?.[0] || "https://images.unsplash.com/photo-1505691938895-1758d7eaa511?auto=format&fit=crop&q=80&w=200"}
+                                            src={item.image_urls?.[0] ? `${BASE_URL}${item.image_urls[0]}` : "https://images.unsplash.com/photo-1505691938895-1758d7eaa511?auto=format&fit=crop&q=80&w=200"}
                                             alt={item.model_name}
                                             className="w-full h-full object-cover"
                                         />

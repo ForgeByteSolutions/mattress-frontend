@@ -1,7 +1,9 @@
 import axios from "axios";
 
+export const BASE_URL = "http://192.168.0.157:8000";
+
 const api = axios.create({
-  baseURL: "https://mattress-backend-1-l8ps.onrender.com/api",
+  baseURL: `${BASE_URL}/api`,
 });
 
 export default api;
