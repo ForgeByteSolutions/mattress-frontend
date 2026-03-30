@@ -7,19 +7,9 @@ export async function explainRecommendation(payload) {
 
 
 export async function explainProduct(product) {
-    const response = await fetch("http://192.168.0.157:8000/api/browse/explain", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            product: product, // 👈 FULL PRODUCT OBJECT
-        }),
+    const response = await api.post("/browse/explain", {
+        product: product, // 👈 FULL PRODUCT OBJECT
     });
 
-    if (!response.ok) {
-        throw new Error("Explain API failed");
-    }
-
-    return response.json();
+    return response.data;
 }
